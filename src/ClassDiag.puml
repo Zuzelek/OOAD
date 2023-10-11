@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+Inventory o-- InstrumentSpec
+InstrumentSpec <|-- GuitarSpec
+InstrumentSpec <|-- MandolinSpec
+class Inventory{
+- Guitars : List
++ addGuitar()
++ getGuitar() : Guitar
++ search() : List
+}
+
+class Guitar {
++getSpec() : GuitarSpec
+}
+class Mandolin {
++getSpec() : MandolinSpec
+}
+
+class InstrumentSpec{
+-model: String
++getBuilder() : Builder
++getModel() : String
++getType() : Type
++getBackWood() : Wood
++getTopWood() : Wood
++matches(InstrumentSpec) : boolean
+}
+class MandolinSpec{
++ getStyle(): Style
++ matches(MandolinSpec) : boolean
+}
+
+class GuitarSpec{
+- NumStrings : numStrings
++ getNumStrings() : NumStrings
++ matches(GuitarSpec) : boolean
+}
+
+
+enum Builder{
+FENDER
+COLLINS
+WILSON
+YAMAHA
+}
+enum Wood{
+CEDAR
+ALDER
+MAHOGANY
+}
+enum Type{
+ACOUSTIC
+ELECTRIC
+}
+enum NumStrings{
+SIX
+TWELVE
+}
+enum Style{
+A
+F
+}
+
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+class Inventory{
+- Guitars : List
++ addGuitar()
++ getGuitar() : Guitar
++ search() : List
+}
+
+class Guitar {
+- SerialNumber: String
+- Price : double
++ getSerialNumber() : String
++ getPrice() : double
++ getSpec() : GuitarSpec
+
+
+}
+class GuitarSpec{
+- Builder : builder
+- Model : String
+- Type : type
+- NumStrings : numStrings
+- Wood : backwood
+- Wood topWood
++ getBuilder() : Builder
++ getModel() : String
++ getType() : Type
++ getNumStrings() : NumStrings
++ getBackWood() : Wood
++ getTopWood() : Wood
++ matches() : boolean
+}
+
+Inventory o-- Guitar
+Guitar "0..*" -- "has a" GuitarSpec
+
+enum Builder{
+FENDER
+COLLINS
+WILSON
+YAMAHA
+}
+enum Wood{
+CEDAR
+ALDER
+MAHOGANY
+}
+enum Type{
+ACOUSTIC
+ELECTRIC
+}
+enum NumStrings{
+SIX
+TWELVE
+}
+
+@enduml
